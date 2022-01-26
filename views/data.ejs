@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Data</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/favicon.ico">
+</head>
+
+<body>
+  <h1>Datenbank</h1>
+  <h2>Formulare</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Datum</th>
+        <th scope="col">Mitarbeiter</th>
+        <th scope="col">Projektkennung</th>
+        <th scope="col">nachgeschautes Erfahrungswissen</th>
+        <th scope="col">Gelerntes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%formular.forEach(function(element){%>
+      <tr>
+        <th scope="row"><%=element.id%></th>
+        <td><%=element.datum%></td>
+        <td><%=element.mitarbeiter%></td>
+        <td><%=element.projektkennung%></td>
+        <td><%=element.nachgeschautes_erfahrungswissen%></td>
+        <td><%=element.gelerntes%></td>
+      </tr>
+      <%});%>
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%abs.forEach(function(element){%>
+      <tr>
+        <th scope="row"><%=element.form_id%></th>
+        <td><%=element.as_name%></td>
+      </tr>
+      <%});%>
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Beschreibung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%re.forEach(function(element){%>
+      <tr>
+        <th scope="row"><%=element.form_id%></th>
+        <td><%=element.re_name%></td>
+        <td><%=element.beschreibung%></td>
+      </tr>
+      <%});%>
+    </tbody>
+  </table>
+</body>
+
+</html>

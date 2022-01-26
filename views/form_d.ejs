@@ -1,59 +1,58 @@
 <%- include("partials/header") -%>
 <h1>d) Dokumentation der Arbeiten - Werkstoffprüfung</h1>
-<form>
+<form action="/", method="post">
   <div class="form-group">
     <label>Datum:</label>
-    <input type="text" class="form-control">
+    <input name="datum" type="date" class="form-control" required>
   </div>
   <div class="form-group">
     <label>Mitarbeiter/-in:</label>
-    <input type="text" class="form-control">
+    <input name="mitarbeiter" type="text" class="form-control">
   </div>
   <div class="form-group">
     <label>Projektkennung:</label>
-    <input type="text" class="form-control">
+    <input name="projektkennung" type="text" class="form-control">
   </div>
-</form>
 <h2>1. Bei welchen Arbeitsschritten haben Sie nach Erfahrungswissen nachgeschaut?</h2>
 <div class="container">
   <div class="row">
     <div class="col">
       <div class="form-check">
-        <input id="defaultCheck1" type="checkbox" class="form-check-input" value="">
+        <input name="abs_werkstoff" id="defaultCheck1" type="checkbox" class="form-check-input" value="">
         <label class="form-check-label" for="defaultCheck1">1. Werkstoff</label>
       </div>
       <div class="form-check">
-        <input id="defaultCheck2" type="checkbox" class="form-check-input" value="">
+        <input name="abs_herstellungsverfahren" id="defaultCheck2" type="checkbox" class="form-check-input" value="">
         <label class="form-check-label" for="defaultCheck2">2. Herstellungsverfahren</label>
       </div>
       <div class="form-check">
-        <input id="defaultCheck3" type="checkbox" class="form-check-input" value="">
+        <input name="abs_wärmebehandlung" id="defaultCheck3" type="checkbox" class="form-check-input" value="">
         <label class="form-check-label" for="defaultCheck3">3. Wärmebehandlung</label>
       </div>
       <div class="form-check">
-        <input id="defaultCheck4" type="checkbox" class="form-check-input" value="">
+        <input name="abs_probenanzahl/versuchsreihen" id="defaultCheck4" type="checkbox" class="form-check-input" value="">
         <label class="form-check-label" for="defaultCheck4">4.Probenanzahl/Versuchsreihen</label>
       </div>
       <div class="form-check">
-        <input id="defaultCheck5" type="checkbox" class="form-check-input" value="">
+        <input name="abs_probengeometrie" id="defaultCheck5" type="checkbox" class="form-check-input" value="">
         <label class="form-check-label" for="defaultCheck5">5. Probengeometrie</label>
       </div>
     </div>
     <div class="col">
       <div class="form-check">
-        <input id="defaultCheck6" type="checkbox" class="form-check-input" value="">
+        <input name="abs_probenvorbereitung" id="defaultCheck6" type="checkbox" class="form-check-input" value="">
         <label class="form-check-label" for="defaultCheck6">6. Probenvorbereitung</label>
       </div>
       <div class="form-check">
-        <input id="defaultCheck7" type="checkbox" class="form-check-input" value="">
+        <input name="abs_versuchsstand_einrichten" id="defaultCheck7" type="checkbox" class="form-check-input" value="">
         <label class="form-check-label" for="defaultCheck7">7. Versuchsstand einrichten</label>
       </div>
       <div class="form-check">
-        <input id="defaultCheck8" type="checkbox" class="form-check-input" value="">
+        <input name="abs_versuchsdurchführung" id="defaultCheck8" type="checkbox" class="form-check-input" value="">
         <label class="form-check-label" for="defaultCheck8">8. Versuchsdurchführung</label>
       </div>
       <div class="form-check">
-        <input id="defaultCheck9" type="checkbox" class="form-check-input" value="">
+        <input name="abs_auswertung/prüfbericht" id="defaultCheck9" type="checkbox" class="form-check-input" value="">
         <label class="form-check-label" for="defaultCheck9">9. Auswertung/Prüfbericht</label>
       </div>
     </div>

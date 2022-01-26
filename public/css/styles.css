@@ -24,3 +24,8 @@ h2 {
 .submitBtn {
   margin-top: 1rem;
 }
+
+.table{
+  width: 90%;
+  margin-bottom: 3rem;
+}
