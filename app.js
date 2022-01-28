@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 const pool = new Pool({
-  connectionString: "postgres://tteoeocadcqwsb:36f316bbff302493488957fd3d06d2195b5e59ccb85d8b4f19212c6f646e5e6c@ec2-54-228-95-1.eu-west-1.compute.amazonaws.com:5432/d3u3v2tqlgvtfc",
+  connectionString: "postgres://hkimycgktprnvb:a0d19a7bc6e693043d21b5239e1e01b931871cc441e4cfabc6611a4222319cc8@ec2-34-246-24-110.eu-west-1.compute.amazonaws.com:5432/db7kbeb6moq53i",
   ssl: {
     rejectUnauthorized: false
   }
