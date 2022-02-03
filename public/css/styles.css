@@ -7,6 +7,10 @@ h2 {
   margin: 1.5rem 0 1.5rem 0;
 }
 
+table {
+    word-wrap: break-word;
+}
+
 .hText {
   margin-bottom: 0;
 }
@@ -28,4 +32,17 @@ h2 {
 .table{
   width: 90%;
   margin-bottom: 3rem;
+}
+
+.linebreak{
+  width: 20%;
+  overflow-wrap: break-word;
+}
+
+.selection {
+  margin-bottom: 1rem;
+}
+
+.hidden_col {
+  display: none;
 }
