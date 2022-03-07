@@ -1,6 +1,5 @@
 <%- include("partials/header") -%>
 <h1>c) Dokumentation der Arbeiten – E-Polieren</h1>
-<form action="/", method="post">
   <input type="hidden" name="titel" value="c">
   <div class="form-group">
     <label>Datum:</label>
@@ -14,49 +13,49 @@
     <label>Projektkennung:</label>
     <input name="projektkennung" type="text" class="form-control">
   </div>
-<h2>1. Bei welchen Arbeitsschritten haben Sie nach Erfahrungswissen nachgeschaut?</h2>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="form-check">
-        <input name="abs_makrofoto" id="defaultCheck1" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck1">1. Makrofoto</label>
+  <h2>1. Bei welchen Arbeitsschritten haben Sie nach Erfahrungswissen nachgeschaut?</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="form-check">
+          <input name="abs_makrofoto" id="defaultCheck1" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck1">1. Makrofoto</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_trennen" id="defaultCheck2" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck2">2. Trennen</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_schleifen" id="defaultCheck3" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck3">3. Schleifen</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_polieren" id="defaultCheck4" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck4">4. Polieren</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_endpolieren" id="defaultCheck5" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck5">5. Endpolieren</label>
+        </div>
       </div>
-      <div class="form-check">
-        <input name="abs_trennen" id="defaultCheck2" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck2">2. Trennen</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_schleifen" id="defaultCheck3" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck3">3. Schleifen</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_polieren" id="defaultCheck4" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck4">4. Polieren</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_endpolieren" id="defaultCheck5" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck5">5. Endpolieren</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-check">
-        <input name="abs_vibrationspolieren" id="defaultCheck6" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck6">6. Vibrationspolieren</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_e-polieren" id="defaultCheck7" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck7">7. E-Polieren</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_ätzen" id="defaultCheck8" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck8">8. Ätzen</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_lichtmikroskopie" id="defaultCheck9" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck9">9. Lichtmikroskopie</label>
+      <div class="col">
+        <div class="form-check">
+          <input name="abs_vibrationspolieren" id="defaultCheck6" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck6">6. Vibrationspolieren</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_e-polieren" id="defaultCheck7" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck7">7. E-Polieren</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_ätzen" id="defaultCheck8" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck8">8. Ätzen</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_lichtmikroskopie" id="defaultCheck9" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck9">9. Lichtmikroskopie</label>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<%- include("partials/footer") -%>
+  <%- include("partials/footer") -%>

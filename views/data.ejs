@@ -8,178 +8,180 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/css/styles.css"><link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" href="images/favicon.ico">
+  <script lang="javascript" src="https://jsdelivr.com/package/npm/xlsx"></script>
 </head>
 
 <body>
+  <%var csv_text = "";%>
   <h1>Datenbank</h1>
   <h2>Formulare</h2>
-  <div class="dropdown show selection">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Formularauswahl
-  </a>
-  <button class="btn btn-secondary"id="export" class="btn" data-export="export">Export</button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="/data/a">a) Dokumentation der Arbeiten – konventionelle Metallografie</a>
-    <a class="dropdown-item" href="/data/b">b) Dokumentation der Präparationsarbeiten – Elektronenmikroskopie</a>
-    <a class="dropdown-item" href="/data/c">c) Dokumentation der Arbeiten – E-Polieren</a>
-    <a class="dropdown-item" href="/data/d">d) Dokumentation der Arbeiten - Werkstoffprüfung</a>
-    <a class="dropdown-item" href="/data">Alle Formulare</a>
-  </div>
-</div>
-  <table class="table">
-    <thead>
-      <tr>
-        <%var sonstiger_weg = ""%>
-        <th class="csv" scope="col">ID</th>
-        <th class="csv hidden_col">Formular</th>
-        <th class="csv" scope="col">Datum</th>
-        <th class="csv" scope="col">Mitarbeiter</th>
-        <th class="csv" scope="col">Projektkennung</th>
-        <th class="csv" scope="col">nachgeschautes Erfahrungswissen</th>
-        <th class="csv" scope="col">Gelerntes</th>
-        <th scope="col">Arbeitsschritte</th>
-        <th scope="col">Recherche</th>
-        <%arbeit.forEach(function(element){%>
-          <th class="csv hidden_col" scope="col">As:<%=element.name%></th>
-        <%})%>
-        <%recherche.forEach(function(element){%>
-          <th class="csv hidden_col" scope="col">Re:<%=element.name%></th>
-        <%})%>
-        <th class="csv hidden_col" scope="col">Sonstiger-Weg-Beschreibung</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%formular.forEach(function(element){%>
-      <tr>
-        <td class="csv" scope="row"><%=element.id%></td>
-        <td class="csv hidden_col"><%=element.formular%></td>
-        <%let date = element.datum.toLocaleString().split(' ')[0].slice(0, -1);%>
-        <td class="csv" ><%=date%></td>
-        <td class="csv" ><%=element.mitarbeiter%></td>
-        <td class="csv" ><%=element.projektkennung%></td>
-        <td class="csv" ><%=element.nachgeschautes_erfahrungswissen%></td>
-        <td class="csv" ><%=element.gelerntes%></td>
-        <%var BreakException = {};%>
-        <td>
-        <%try{%>
-        <%abs.forEach(function(abs_ele){%>
-        <%if(abs_ele.form_id === element.id){%>
-        <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Arbeitsschritte
-        </a>
-        <% throw BreakException; }});%>
-        <%}catch(e){if (e !== BreakException) throw e;} %>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  <form action="/export" method="post">
+    <div class="dropdown show selection">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Formularauswahl
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="/data/a/<%=selected_company%>">a) Dokumentation der Arbeiten – konventionelle Metallografie</a>
+        <a class="dropdown-item" href="/data/b/<%=selected_company%>">b) Dokumentation der Präparationsarbeiten – Elektronenmikroskopie</a>
+        <a class="dropdown-item" href="/data/c/<%=selected_company%>">c) Dokumentation der Arbeiten – E-Polieren</a>
+        <a class="dropdown-item" href="/data/d/<%=selected_company%>">d) Dokumentation der Arbeiten - Werkstoffprüfung</a>
+        <a class="dropdown-item" href="/data/all/<%=selected_company%>">Alle Formulare</a>
+      </div>
+    </div>
+    <div class="dropdown show selection">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Firmenauswahl
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="/data/<%=selected_form%>/a">Firma A</a>
+        <a class="dropdown-item" href="/data/<%=selected_form%>/b">Firma B</a>
+        <a class="dropdown-item" href="/data/<%=selected_form%>/c">Firma C</a>
+        <a class="dropdown-item" href="/data/<%=selected_form%>/d">Firma D</a>
+        <a class="dropdown-item" href="/data/<%=selected_form%>/all">Alle Firmen</a>
+      </div>
+    </div>
+    <input type="text" class="hidden_col" id="data" name="data" value="">
+    <button type"submit" class="submitBtn btn btn-secondary" id="export">Export</button>
+    <table class="table">
+      <thead>
+        <tr>
+          <%var sonstiger_weg = ""%>
+          <th class="form" scope="col">ID</th>
+          <th class="form hidden_col">Formular</th>
+          <th class="form hidden_col" scope="col">Firma</th>
+          <th class="form" scope="col">Datum</th>
+          <th class="form" scope="col">Mitarbeiter</th>
+          <th class="form" scope="col">Projektkennung</th>
+          <th class="form" scope="col">nachgeschautes Erfahrungswissen</th>
+          <th class="form" scope="col">Gelerntes</th>
+          <th scope="col">Arbeitsschritte</th>
+          <th class="csv hidden_col">weitere Sheets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%formular.forEach(function(element){%>
+        <tr>
+          <td class="form" scope="row"><%=element.id%></td>
+          <td class="form hidden_col"><%=element.formular%></td>
+          <td class="form hidden_col"><%=element.company%></td>
+          <%let date = element.datum.toLocaleString().split(' ')[0].slice(0, -1);%>
+          <td class="form"><%=date%></td>
+          <td class="form"><%=element.mitarbeiter%></td>
+          <td class="form"><%=element.projektkennung%></td>
+          <td class="form"><%=element.nachgeschautes_erfahrungswissen%></td>
+          <td class="form"><%=element.gelerntes%></td>
+          <%var BreakException = {};%>
+          <td>
+            <%try{%>
             <%abs.forEach(function(abs_ele){%>
             <%if(abs_ele.form_id === element.id){%>
-              <a class="dropdown-item" href="#"><%=abs_ele.as_name%></a>
-            <%}});%>
-          </div>
-        </div>
-        </td>
-        <td>
-        <%try{%>
-        <%re.forEach(function(re_ele){%>
-        <%if(re_ele.form_id === element.id){%>
-        <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Recherche
-        </a>
-        <% throw BreakException; }});%>
-        <%}catch(e){if (e !== BreakException) throw e;} %>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <%re.forEach(function(re_ele){%>
-            <%if(re_ele.form_id === element.id){%>
-              <%if(re_ele.re_name === 'sonstiger_weg'){%>
-                <%sonstiger_weg = re_ele.beschreibung%>
-                <a class="dropdown-item" href="#"><%=re_ele.re_name + ": " + re_ele.beschreibung%></a>
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Arbeitsschritte</a>
+              <% throw BreakException; }});%>
+              <%}catch(e){if (e !== BreakException) throw e;} %>
+              <ul class="dropdown-menu">
+                <%var dropdown = {};%>
+                <%abs.forEach(function(abs_ele){%>
+                <%if(abs_ele.form_id === element.id){%>
+                <%if(abs_ele.re_name != "null"){%>
+                  <%var value_name = abs_ele.re_name;%>
+                  <%if(abs_ele.re_name === 'sonstiger_weg'){%>
+                    <%value_name += '(|)' + abs_ele.sonstiger_weg_text;%>
+                  <%}%>
+                <%if(abs_ele.as_name in dropdown){%>
+                <%dropdown[abs_ele.as_name].push(value_name);%>
                 <%}else{%>
-              <a class="dropdown-item" href="#"><%=re_ele.re_name%></a>
-            <%}}});%>
-          </div>
-        </div>
-        </td>
-        <%var abs_names = []; %>
-        <%abs.forEach(function(abs_ele){%>
-          <%if(abs_ele.form_id === element.id){%>
-            <%abs_names.push(abs_ele.as_name);%>
-          <%}%>
-        <%});%>
-        <%var re_names = []; %>
-        <%re.forEach(function(re_ele){%>
-          <%if(re_ele.form_id === element.id){%>
-            <%re_names.push(re_ele.re_name);%>
-          <%}%>
-        <%});%>
-        <%arbeit.forEach(function(e){%>
-          <%if(abs_names.includes(e.name)){%>
-            <td class="csv hidden_col" >X</td>
-          <%}else{%>
-            <td class="csv hidden_col" ></td>
+                <%dropdown[abs_ele.as_name] = [value_name];%>
+                <%}%>
+                <%}else{%>
+                <%dropdown[abs_ele.as_name] = []%>
+                <%}%>
+            <%}});%>
+                <%for (const [key, value] of Object.entries(dropdown)) {%>
+                  <%csv_text += key + "%" + element.id;%>
+                <%if(value.length === 0){%>
+                <li><a class="item" tabindex="-1" href="#"><%=key%></a></li>
+                <%}else{%>
+                  <%csv_text += ";";%>
+                <li class="dropdown-submenu">
+                  <a class="item" tabindex="-1" href="#"><%=key%> &raquo;</a>
+                  <ul class="dropdown-menu">
+                    <%value.forEach(function(values){%>
+                      <%csv_text += ",";%>
+                      <%csv_text += values;%>
+                    <li><a class="item" tabindex="-1" href="#"><%=values%></a></li>
+                    <%});%>
+                  </ul>
+                </li>
+                <%}%>
+                <%csv_text += "§";%>
             <%}%>
+              </ul>
+            </div>
+          </td>
+        </tr>
         <%});%>
-        <%recherche.forEach(function(e){%>
-          <%if(re_names.includes(e.name)){%>
-            <td class="csv hidden_col" >X</td>
-          <%}else{%>
-            <td class="csv hidden_col" ></td>
-            <%}%>
-        <%});%>
-        <td class="csv hidden_col" ><%=sonstiger_weg%></td>
-      </tr>
-      <%});%>
-    </tbody>
-  </table>
-
+      </tbody>
+    </table>
+  </form>
+  <input type="hidden" id="csv_text_input" value="<%=csv_text%>">
   <script type="text/javascript">
-        $.prototype.kb_table_csv = function() {
 
-      var kb_tidy_content = function(text){
-      text = text.replace(/"/g, '""');
-      return '"'+text+'"';
+    $(document).ready(function() {
+      $('.dropdown-submenu a.item').on("click", function(e) {
+        $(this).next('ul').toggle();
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    });
+
+    $.prototype.kb_table_csv = function(data_name) {
+      var kb_tidy_content = function(text) {
+        text = text.replace(/"/g, '');
+        return '' + text + '';
       };
 
-      $(this).each(function(){
-      var table = $(this);
-      var caption = $(this).find('caption').text();
-      var title = [];
-      var rows = [];
+      $(this).each(function() {
+        var table = $(this);
+        var caption = $(this).find('caption').text();
+        var title = [];
+        var rows = [];
 
-      $(this).find('tr').each(function(){
-       var data = [];
-       $(this).find('th.csv').each(function(){
-       var text = kb_tidy_content($(this).text());
-       title.push(text);
+        $(this).find('tr').each(function() {
+          var data = [];
+          $(this).find('th.' + data_name).each(function() {
+            var text = kb_tidy_content($(this).text());
+            title.push(text);
+          });
+
+          $(this).find('td.' + data_name).each(function() {
+            var text = kb_tidy_content($(this).text());
+            data.push(text);
+          });
+
+          data = data.join("|$§");
+          rows.push(data);
+        });
+
+        title = title.join("|$§");
+        rows = rows.join("|$%");
+
+        out = title + rows;
       });
+    };
+    var out = ""
 
-      $(this).find('td.csv').each(function(){
-       var text = kb_tidy_content($(this).text());
-       data.push(text);
-      });
 
-      data = data.join(",");
-      rows.push(data);
-      });
-
-      title = title.join(",");
-      rows = rows.join("\n");
-
-      var csv = title + rows;
-      var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-      var download_link = document.createElement('a');
-      download_link.href = uri;
-      download_link.download = "data.csv";
-      document.body.appendChild(download_link);
-      download_link.click();
-      document.body.removeChild(download_link);
-      });
-      };
-
-      $("#export").click(function(){
-      $("table").kb_table_csv();
-      });
+    $("#export").click(function() {
+      $("table").kb_table_csv("form");
+      var temp = document.getElementById('csv_text_input').value;
+      temp = temp.slice(0, -1);
+      out += "|$&" + temp;
+      $("#data").val(out);
+    });
   </script>
 </body>
+
 </html>
