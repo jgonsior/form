@@ -1,0 +1,108 @@
+<%- include("partials/header_2") -%>
+<h1>b) Dokumentation der Präparationsarbeiten – Elektronenmikroskopie</h1>
+  <input type="hidden" name="titel" value="b">
+  <div class="form-group">
+    <label>Datum:</label>
+    <input name="datum" type="date" class="form-control" value="<%=datum%>" required>
+  </div>
+  <div class="form-group">
+    <label>Mitarbeiter/-in:</label>
+    <input name="mitarbeiter" type="text" class="form-control" value="<%=mitarbeiter%>">
+  </div>
+  <div class="form-group">
+    <label>Projektkennung:</label>
+    <input name="projektkennung" type="text" class="form-control" value="<%=projekt%>">
+  </div>
+  <h2 class="hText">2. Nach welchem Erfahrungswissen haben Sie konkret nachgeschau (Stichpunkte + Nummer Arbeitsschritt angeben)?</h2>
+    <div class="form-group">
+      <label for="textArea1"></label>
+      <textarea name="erfahrungswissen" class="form-control" rows="3" id="textArea1"><%=erfahrung%></textarea>
+    </div>
+  <h2 class="hText">3. Was haben Sie gelernt? (Stichpunkte)?</h2>
+    <div class="form-group">
+      <label for="textArea2"></label>
+      <textarea name="gelerntes" class="form-control" rows="3" id="textArea2"><%=gelerntes%></textarea>
+    </div>
+  <h2>4. Wie haben Sie nach dem Erfahrungswissen recherchiert bzw. nachgeschlagen?</h2>
+  <% abs_array.forEach(function(ele){%>
+    <input type="hidden" name=<%=ele%>>
+    <%ele = ele.substring(4); %>
+    <h2><%=ele%></h2>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="form-check">
+            <%var austausch = ele + "_re_austausch_mit_kollegen"%>
+            <%var auge = ele + "_re_auswertung_4_augen_prinzip"%>
+            <%var runde = ele + "_re_abteilungsrunde"%>
+            <%var arbeit = ele + "_re_arbeitsanweisungen"%>
+            <%var maschine = ele + "_re_maschinentagebücher"%>
+            <%var laborbuch = ele + "_re_persönliches_laborbuch"%>
+            <%var bauch = ele + "_re_bauchgefühl"%>
+            <%var guide = ele + "_re_präparationsguide"%>
+            <%var liste = ele + "_re_wochenliste"%>
+            <%var ablage = ele + "_re_ordnerablage"%>
+            <%var daten = ele + "_re_datenbank"%>
+            <%var absprache = ele + "_re_tägliche_absprachen"%>
+            <%var weg_text = "sonstiger_weg_text_" + ele%>
+            <input name=<%=austausch%> id=<%=austausch%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=austausch%>>Austausch mit Kollegen</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=auge%> id=<%=auge%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=auge%>>Auswertung 4-Augen-Prinzip</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=runde%> id=<%=runde%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=runde%>>Abteilungsrunde</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=arbeit%> id=<%=arbeit%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=arbeit%>>Arbeitsanweisungen</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=maschine%> id=<%=maschine%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=maschine%>>Maschinentagebücher</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=laborbuch%> id=<%=laborbuch%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=laborbuch%>>persönliches Laborbuch</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=bauch%> id=<%=bauch%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=bauch%>>"Bauchgefühl"</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input name=<%=guide%> id=<%=guide%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=guide%>>Präparationsguide</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=liste%> id=<%=liste%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=liste%>>Wochenliste</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=ablage%> id=<%=ablage%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=ablage%>>Ordnerablage</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=daten%> id=<%=daten%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=daten%>>Datenbank</label>
+          </div>
+          <div class="form-check">
+            <input name=<%=absprache%> id=<%=absprache%> type="checkbox" class="form-check-input" value="">
+            <label class="form-check-label" for=<%=absprache%>>Tägliche Absprachen</label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for=<%=weg_text%> >sonstiger Weg:</label>
+            <textarea onclick="document.getElementById('defaultCheck1300').checked = true;" id=<%=weg_text%> name=<%=weg_text%> class="form-control" rows="2" col="60" id="textArea"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%})%>
+  <button class="submitBtn btn btn-primary" type="submit" name="button">Abschicken</button>
+</form>
+</body>
+</html>

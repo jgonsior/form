@@ -1,6 +1,5 @@
 <%- include("partials/header") -%>
 <h1>b) Dokumentation der Präparationsarbeiten – Elektronenmikroskopie</h1>
-<form action="/", method="post">
   <input type="hidden" name="titel" value="b">
   <div class="form-group">
     <label>Datum:</label>
@@ -14,49 +13,49 @@
     <label>Projektkennung:</label>
     <input name="projektkennung" type="text" class="form-control">
   </div>
-<h2>1. Bei welchen Arbeitsschritten haben Sie nach Erfahrungswissen nachgeschaut?</h2>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="form-check">
-        <input name="abs_makrofoto" id="defaultCheck1" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck1">1. Makrofoto</label>
+  <h2>1. Bei welchen Arbeitsschritten haben Sie nach Erfahrungswissen nachgeschaut?</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="form-check">
+          <input name="abs_makrofoto" id="defaultCheck1" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck1">1. Makrofoto</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_einbetten_vor_trennen" id="defaultCheck2" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck2">2. Einbetten vor Trennen</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_trennen" id="defaultCheck3" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck3">3. Trennen</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_einbetten" id="defaultCheck4" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck4">4. Einbetten</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_schleifen" id="defaultCheck5" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck5">5. Schleifen</label>
+        </div>
       </div>
-      <div class="form-check">
-        <input name="abs_einbetten_vor_trennen" id="defaultCheck2" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck2">2. Einbetten vor Trennen</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_trennen" id="defaultCheck3" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck3">3. Trennen</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_einbetten" id="defaultCheck4" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck4">4. Einbetten</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_schleifen" id="defaultCheck5" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck5">5. Schleifen</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-check">
-        <input name="abs_endpolieren" id="defaultCheck6" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck6">6. Endpolieren</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_ionenpolitur_csp" id="defaultCheck7" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck7">7. Ionenpolitur CSP</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_ionenpolitur_pips" id="defaultCheck8" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck8">8. Ionenpolitur PIPS</label>
-      </div>
-      <div class="form-check">
-        <input name="abs_fib" id="defaultCheck9" type="checkbox" class="form-check-input" value="">
-        <label class="form-check-label" for="defaultCheck9">9. FIB</label>
+      <div class="col">
+        <div class="form-check">
+          <input name="abs_endpolieren" id="defaultCheck6" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck6">6. Endpolieren</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_ionenpolitur_csp" id="defaultCheck7" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck7">7. Ionenpolitur CSP</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_ionenpolitur_pips" id="defaultCheck8" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck8">8. Ionenpolitur PIPS</label>
+        </div>
+        <div class="form-check">
+          <input name="abs_fib" id="defaultCheck9" type="checkbox" class="form-check-input" value="">
+          <label class="form-check-label" for="defaultCheck9">9. FIB</label>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<%- include("partials/footer") -%>
+  <%- include("partials/footer") -%>
